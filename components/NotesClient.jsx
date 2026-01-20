@@ -12,6 +12,7 @@ const NotesClient = ({ initialNotes }) => {
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
+  const [editLoading, setEditLoading] = useState(false);
 
   const createNote = async (e) => {
     e.preventDefault();
@@ -58,7 +59,7 @@ const NotesClient = ({ initialNotes }) => {
 
   const updateNote = async (id) => {
     if (!editTitle.trim() || !editContent.trim()) return;
-    setLoading(true);
+    setEditLoading(true);
 
     try {
       const response = await fetch(`/api/notes/${id}`, {
@@ -73,7 +74,7 @@ const NotesClient = ({ initialNotes }) => {
         setEditingId(null);
         setEditTitle("");
         setEditContent("");
-        setLoading(false);
+        setEditLoading(false);
       }
     } catch (error) {
       console.error("Error updating note:", error);
@@ -160,10 +161,10 @@ const NotesClient = ({ initialNotes }) => {
                     <div className="flex gap-2">
                       <button 
                       onClick={()=> updateNote(note._id)}
-                      disabled={loading}
+                      disabled={editLoading}
                       className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 disabled:opacity-50"  
                       >
-                        {loading? "Saving..." : "Save" }
+                        {editLoading? "Saving..." : "Save" }
                       </button>
 
                       <button 

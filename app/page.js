@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import NotesClient from "@/components/NotesClient";
 import dbConnect from "@/lib/db";
 import Note from "@/models/Note";
@@ -14,7 +15,7 @@ async function getNotes() {
 export default async function Home() {
 
   const notes = await getNotes();
-  console.log("Notes on Home Page:", notes);
+  // console.log("Notes on Home Page:", notes);
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Welcome to the Notes App</h1>

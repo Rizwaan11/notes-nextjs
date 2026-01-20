@@ -20,7 +20,7 @@ export async function POST(request) {
   try {
     await dbConnect();
     const body = await request.json();
-    console.log("Request Body:", body);
+    // console.log("Request Body:", body);
     const note = await Note.create(body);
     return NextResponse.json({ success: true, data: note }, { status: 201 });
   } catch (error) {

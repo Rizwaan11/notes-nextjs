@@ -31,7 +31,7 @@ const NotesClient = ({ initialNotes }) => {
         setTitle("");
         setContent("");
       }
-      console.log(result);
+      
       setLoading(false);
     } catch (error) {
       console.error("Error creating note:", error);
